@@ -9,3 +9,4 @@ class Todo(Base):
     content = Column(String)
     done = Column(Boolean, default=False)
     due_date = Column(String)
+    important = Column(Boolean, default=False)

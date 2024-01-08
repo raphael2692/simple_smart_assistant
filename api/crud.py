@@ -9,7 +9,7 @@ def get_todos(db: Session, skip: int = 0, limit: int = 100):
 
 
 def create_todo(db: Session, todo: schemas.TodoCreate):
-    db_todo = models.Todo(content=todo.content, due_date=todo.due_date)
+    db_todo = models.Todo(content=todo.content, due_date=todo.due_date, important=todo.important)
     db.add(db_todo)
     db.commit()
     db.refresh(db_todo)

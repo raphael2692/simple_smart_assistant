@@ -197,6 +197,11 @@
                     "due_date": {
                         "type": "string",
                         "title": "Due Date"
+                    },
+                    "important": {
+                        "type": "boolean",
+                        "title": "Important",
+                        "default": false
                     }
                 },
                 "type": "object",

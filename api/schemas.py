@@ -3,6 +3,7 @@ from pydantic import BaseModel
 class TodoBase(BaseModel):
     content: str
     due_date: str
+    important: bool = False
 
 class TodoCreate(TodoBase):
     pass
