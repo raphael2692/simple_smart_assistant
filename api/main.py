@@ -4,7 +4,9 @@ from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
 
 import crud, models, schemas
+
 from database import SessionLocal, engine
+from uvicorn.server import logger
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -36,6 +38,7 @@ def read_todos(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     Function to retrieve all Todos.
     """
     todos = crud.get_todos(db, skip, limit)
+    logger.warning(f"request to show all todos")
     return todos
 
 
@@ -45,6 +48,7 @@ def create_todo(todo: schemas.TodoCreate, db: Session = Depends(get_db)):
     Function to create a Todo. In the content there should be all the necessary info, including the due date.
     """
     db_todo = crud.create_todo(db, todo)
+    logger.warning(f"request to create: {todo}")
     return db_todo
 
 @app.put("/todos/{todo_id}")
@@ -53,6 +57,7 @@ def update_todo(todo_id: int, done: bool, db: Session = Depends(get_db)):
     Function to mark an existing Todo as completed or not. Remember that id start from 0.
     """
     db_todo = crud.update_todo(db, todo_id, done)
+    logger.warning(f"request to update, todo_id: {todo_id}, done:{done}")
     return db_todo
 
 @app.delete("/todos/{todo_id}")
@@ -61,6 +66,7 @@ def delete_todo(todo_id: int, db: Session = Depends(get_db)):
     Function to delete a Todo.
     """
     db_todo = crud.delete_todo(db, todo_id)
+    logger.warning(f"request to delete, todo_id: {todo_id}")
     return db_todo
 
 if __name__ == "__main__":

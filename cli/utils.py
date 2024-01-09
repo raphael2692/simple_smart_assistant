@@ -1,11 +1,13 @@
 import jsonref
 import json
 import requests
-from dotenv import load_dotenv
+import sys
 from dotenv import dotenv_values
 from loguru import logger
 
-load_dotenv()
+logger.remove()
+logger.add(sys.stderr, level="INFO")
+
 config = dotenv_values(".env") 
 logger.debug(f"Reading form env: {config.keys()}")
 

@@ -1,12 +1,14 @@
 import openai
+import sys
 import json
 from utils import get_functions
 import requests
 from dotenv import load_dotenv
 from dotenv import dotenv_values
-from loguru import logger
+from utils import logger
 
 load_dotenv()
+
 config = dotenv_values(".env") 
 logger.debug(f"Using the following configuration: {config}")
 
@@ -41,7 +43,7 @@ def chat_with_memory(messages:list, avaiable_functions:dict, functions:list) -> 
     # Add response to history
     messages.append({"role": "system", "content": response})
     # Display output in the console
-    print("CHATBOT:", response)
+    print("*CHATBOT* :", response)
 
 def read_todos_todos_get(**kwargs):
     logger.debug(kwargs)
