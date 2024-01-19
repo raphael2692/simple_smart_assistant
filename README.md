@@ -11,5 +11,5 @@ THe show is made as simple as possible, using the following main libraries:
 
 ## Screenshots
 
-![App Screenshot](docs\demo.png)
+![App Screenshot](docs/demo.png)
 
